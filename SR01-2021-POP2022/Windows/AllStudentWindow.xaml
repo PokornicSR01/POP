@@ -1,0 +1,19 @@
+﻿<Window x:Class="SR01_2021_POP2022.Windows.AllStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SR01_2021_POP2022.Windows"
+        mc:Ignorable="d"
+        Title="Studenti" Height="450" Width="800" Background="Yellow">
+    <Grid>
+        <Menu Margin="0,0,0,387">
+            <MenuItem Name="miDodajStudenta" Header="Dodaj studenta" Click="miDodajStudenta_Click"/>
+            <MenuItem Name="miIzmeniStudenta" Header="Izmeni studenta" Click="miIzmeniStudenta_Click"/>
+            <MenuItem Name="miObrisiStudenta" Header="Obrisi studenta" Click="miObrisiStudenta_Click"/>
+        </Menu>
+        <DataGrid Name="dgStudenti" CanUserAddRows="False" HorizontalAlignment="Center" Height="174" Margin="0,74,0,0" VerticalAlignment="Top" Width="772"/>
+        <Button Name="btnNazad" Content="Nazad" Click="btnNazad_Click" Margin="346,281,354,73"/>
+        
+    </Grid>
+</Window>
