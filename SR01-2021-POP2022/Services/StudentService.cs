@@ -27,7 +27,7 @@ namespace SR01_2021_POP2022.Services
         public void ReadStudents(string filename)
         {
 
-            Data.Instance.Profesori = new ObservableCollection<Profesor>();
+            Data.Instance.Studenti = new ObservableCollection<Student>();
             using (StreamReader file = new StreamReader(@"../../Resources/" + filename))
             {
                 string line;

@@ -42,12 +42,12 @@ namespace SR01_2021_POP2022.Services
                     Enum.TryParse(profesorIzFajla[6], out TipKorisnika tip);
                     Boolean.TryParse(profesorIzFajla[8], out Boolean aktivan);
 
-                    string sifraSkole = profesorIzFajla[10];
+                    //string sifraSkole = profesorIzFajla[10];
                     string sifraAdrese = profesorIzFajla[9];
 
                     Adresa adresa = Data.Instance.VratiAdresu(sifraAdrese);
 
-                    Skola skola = Data.Instance.VratiSkolu(sifraSkole);
+                    //Skola skola = Data.Instance.VratiSkolu(sifraSkole);
 
                     RegistrovaniKorisnik rK = new RegistrovaniKorisnik
                     {
@@ -67,7 +67,7 @@ namespace SR01_2021_POP2022.Services
                     Profesor profesor = new Profesor
                     {
                         Korisnik = rK,
-                        SkolaProfesora = skola
+                        //SkolaProfesora = skola
                     };
 
                     Data.Instance.Profesori.Add(profesor);

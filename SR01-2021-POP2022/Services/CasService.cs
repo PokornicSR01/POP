@@ -25,7 +25,7 @@ namespace SR01_2021_POP2022.Services
 
         public void ReadCas(string filename)
         {
-            Data.Instance.Profesori = new ObservableCollection<Profesor>();
+            Data.Instance.Casovi = new ObservableCollection<Cas>();
             using (StreamReader file = new StreamReader(@"../../Resources/" + filename))
             {
                 string line;

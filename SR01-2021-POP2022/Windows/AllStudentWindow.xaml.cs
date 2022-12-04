@@ -23,14 +23,13 @@ namespace SR01_2021_POP2022.Windows
         public AllStudentWindow()
         {
             InitializeComponent();
+            myDataGrid.ItemsSource = Data.Instance.VratiAktivneStudente();
 
-            dgStudenti.ItemsSource = null;
-            dgStudenti.ItemsSource = Data.Instance.Studenti;
         }
 
         private void miDodajStudenta_Click(object sender, RoutedEventArgs e)
         {
-            RegistrovaniKorisnik k = new RegistrovaniKorisnik();
+            Student k = new Student();
             AddEditStudentWindow addEditStudentWindow = new AddEditStudentWindow(EStatus.DODAJ, k);
 
             addEditStudentWindow.Show();
@@ -39,12 +38,44 @@ namespace SR01_2021_POP2022.Windows
 
         private void miIzmeniStudenta_Click(object sender, RoutedEventArgs e)
         {
+            Student student = (Student)myDataGrid.SelectedItem;
+            Student kopijastudenta = new Student();
 
+            Adresa adresa = new Adresa
+            {
+                Ulica = student.Korisnik.Adresa.Ulica,
+                Broj = student.Korisnik.Adresa.Broj,
+                Grad = student.Korisnik.Adresa.Grad,
+                Drzava = student.Korisnik.Adresa.Drzava,
+                ID = student.Korisnik.Adresa.ID,
+            };
+
+            kopijastudenta.Korisnik = student.Korisnik;
+
+            kopijastudenta.Korisnik.Aktivan = student.Korisnik.Aktivan;
+            kopijastudenta.Korisnik.Prezime = student.Korisnik.Prezime;
+            kopijastudenta.Korisnik.JMBG = student.Korisnik.JMBG;
+            kopijastudenta.Korisnik.Email = student.Korisnik.Email;
+            kopijastudenta.Korisnik.Pol = student.Korisnik.Pol;
+            kopijastudenta.Korisnik.Lozinka = student.Korisnik.Lozinka;
+            kopijastudenta.Korisnik.TipKorisnika = student.Korisnik.TipKorisnika;
+            kopijastudenta.Korisnik.Ime = student.Korisnik.Ime;
+            kopijastudenta.Korisnik.ID = student.Korisnik.ID;
+            kopijastudenta.Korisnik.Adresa = adresa;
+
+            AddEditStudentWindow addEditStudentWindow = new AddEditStudentWindow(EStatus.IZMENI, student);
+
+            if ((bool)!addEditStudentWindow.ShowDialog())
+            {
+                //kopiju postavljam umesto izmenjenog objekta
+                int index = Data.Instance.Studenti.ToList().FindIndex(ko => ko.Korisnik.ID.Equals(student.Korisnik.ID));
+                Data.Instance.Studenti[index] = kopijastudenta;
+            }
         }
 
         private void miObrisiStudenta_Click(object sender, RoutedEventArgs e)
         {
-            Student k = (Student)dgStudenti.SelectedItem;
+            Student k = (Student)myDataGrid.SelectedItem;
             k.Korisnik.Aktivan = false;
             Data.Instance.SacuvajEntitet("studenti.txt");
 

@@ -21,21 +21,37 @@ namespace SR01_2021_POP2022.Windows
     /// </summary>
     public partial class AddEditProfesorWindow : Window
     {
-        private RegistrovaniKorisnik selektovaniKorisnik;
+        private Profesor selektovaniKorisnik;
         private EStatus selektovaniStatus;
 
-        public AddEditProfesorWindow(EStatus status, RegistrovaniKorisnik korisnik)
+        public AddEditProfesorWindow(EStatus status, Profesor korisnik)
         {
 
             InitializeComponent();
             selektovaniKorisnik = korisnik;
             selektovaniStatus = status;
 
-            cmbCas.ItemsSource = Data.Instance.Casovi;
+            cmbPol.ItemsSource = Enum.GetValues(typeof(Pol));
 
-            this.DataContext = korisnik; 
 
-            cmbTipKorisnika.ItemsSource = Enum.GetValues(typeof(TipKorisnika));
+            if (status.Equals(EStatus.IZMENI))
+            {
+                txtUlicaAdrese.Text = korisnik.Korisnik.Adresa.Ulica;
+                txtIDAdrese.Text = korisnik.Korisnik.Adresa.ID;
+                txtGradAdrese.Text = korisnik.Korisnik.Adresa.Grad;
+                txtDrzavaAdrese.Text = korisnik.Korisnik.Adresa.Drzava;
+                txtBrojAdrese.Text = korisnik.Korisnik.Adresa.Broj;
+                txtEmail.Text = korisnik.Korisnik.Email;
+                txtID.Text = korisnik.Korisnik.ID;
+                txtIme.Text = korisnik.Korisnik.Ime;
+                txtPrezime.Text = korisnik.Korisnik.Prezime;
+                txtLozinka.Text = korisnik.Korisnik.Lozinka;
+                txtJMBG.Text = korisnik.Korisnik.JMBG;
+                txtIDAdrese.IsEnabled = false;
+                txtID.IsEnabled = false;
+                cmbPol.IsEnabled = false;
+                txtJMBG.IsEnabled = false;
+            }
 
             if (status.Equals(EStatus.DODAJ))
             {
@@ -55,32 +71,67 @@ namespace SR01_2021_POP2022.Windows
 
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
-
-            Adresa adresa = new Adresa
+            if (selektovaniStatus.Equals(EStatus.IZMENI))
             {
-                Ulica = txtUlicaAdrese.Text,
-                Broj = txtBrojAdrese.Text,
-                ID = txtIDAdrese.Text,
-                Grad = txtGradAdrese.Text,
-                Drzava = txtDrzavaAdrese.Text
-            };
+                string IDAdrese = txtIDAdrese.Text;
+                Adresa adresa = Data.Instance.VratiAdresu(IDAdrese);
 
-            Data.Instance.Adrese.Add(adresa);
+                selektovaniKorisnik.Korisnik.Ime = txtIme.Text;
+                selektovaniKorisnik.Korisnik.Prezime = txtPrezime.Text;
+                selektovaniKorisnik.Korisnik.ID = txtID.Text;
+                selektovaniKorisnik.Korisnik.JMBG = txtJMBG.Text;
+                selektovaniKorisnik.Korisnik.Email = txtEmail.Text;
+                selektovaniKorisnik.Korisnik.Lozinka = txtLozinka.Text;
+                selektovaniKorisnik.Korisnik.Aktivan = true;
+                selektovaniKorisnik.Korisnik.TipKorisnika = TipKorisnika.PROFESOR;
+                selektovaniKorisnik.Korisnik.Adresa = adresa;
+                selektovaniKorisnik.Korisnik.Adresa.Ulica = txtUlicaAdrese.Text;
+                selektovaniKorisnik.Korisnik.Adresa.Broj = txtBrojAdrese.Text;
+                selektovaniKorisnik.Korisnik.Adresa.Grad = txtGradAdrese.Text;
+                selektovaniKorisnik.Korisnik.Adresa.Drzava = txtDrzavaAdrese.Text;
 
-            selektovaniKorisnik.Adresa = adresa;
+                Data.Instance.SacuvajEntitet("adrese.txt");
+                Data.Instance.SacuvajEntitet("profesori.txt");
 
-            Profesor profesor = new Profesor
-            {
-                Korisnik = selektovaniKorisnik, 
-            };
-
-            if (selektovaniStatus.Equals(EStatus.DODAJ))
-            {
-                Data.Instance.Profesori.Add(profesor);
             }
+            else
+            {
+                Adresa adresa = new Adresa
+                {
+                    Ulica = txtUlicaAdrese.Text,
+                    Broj = txtBrojAdrese.Text,
+                    ID = txtIDAdrese.Text,
+                    Grad = txtGradAdrese.Text,
+                    Drzava = txtDrzavaAdrese.Text
+                };
 
-            Data.Instance.SacuvajEntitet("adrese.txt");
-            Data.Instance.SacuvajEntitet("profesori.txt");
+                RegistrovaniKorisnik rk = new RegistrovaniKorisnik
+                {
+                    Ime = txtIme.Text,
+                    Prezime = txtPrezime.Text,
+                    ID = txtID.Text,
+                    JMBG = txtJMBG.Text,
+                    Email= txtEmail.Text,
+                    Lozinka= txtLozinka.Text,
+                    Adresa = adresa,
+                    Aktivan = true,
+                    TipKorisnika = TipKorisnika.PROFESOR,
+                    Pol = (Pol)cmbPol.SelectedItem,
+                };
+
+                Data.Instance.Adrese.Add(adresa);
+
+                Profesor profesor = new Profesor
+                {
+                    Korisnik = rk,
+                };
+                
+                Data.Instance.Profesori.Add(profesor);
+
+                Data.Instance.SacuvajEntitet("adrese.txt");
+                Data.Instance.SacuvajEntitet("profesori.txt");
+
+            }
 
             this.Close();
         }

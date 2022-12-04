@@ -25,13 +25,14 @@ namespace SR01_2021_POP2022.Windows
         {
             InitializeComponent();
 
-            dgProfesori.ItemsSource = null;
-            dgProfesori.ItemsSource = Data.Instance.Profesori;
+            myDataGrid.ItemsSource = null;
+            myDataGrid.ItemsSource = Data.Instance.VratiAktivneProfesori();
+
         }
 
         private void miDodajProfesora_Click(object sender, RoutedEventArgs e)
         {
-            RegistrovaniKorisnik k = new RegistrovaniKorisnik();
+            Profesor k = new Profesor();
             AddEditProfesorWindow addEditProfessorWindow = new AddEditProfesorWindow(EStatus.DODAJ, k);
 
             addEditProfessorWindow.Show();
@@ -40,35 +41,46 @@ namespace SR01_2021_POP2022.Windows
 
         private void miIzmeniProfesora_Click(object sender, RoutedEventArgs e)
         {
-            // proveriti da li je nesto uopste selektovano u tabeli
-            // ako nije, ispisi poruku korisniku
-            RegistrovaniKorisnik k = (RegistrovaniKorisnik)dgProfesori.SelectedItem;
-            //kopija originalnog korisnika
-            RegistrovaniKorisnik kopijaProfesora = new RegistrovaniKorisnik();
-            kopijaProfesora.Ime = k.Ime;
-            kopijaProfesora.Prezime = k.Prezime;
-            kopijaProfesora.Email = k.Email;
-            kopijaProfesora.TipKorisnika = k.TipKorisnika;
-            kopijaProfesora.Aktivan = k.Aktivan;
+            Profesor profesor = (Profesor)myDataGrid.SelectedItem;
+            Profesor kopijaProfesora = new Profesor();
 
-            AddEditProfesorWindow addEditProfessorWindow = new AddEditProfesorWindow(EStatus.IZMENI, k);
+            Adresa adresa = new Adresa
+            {
+                Ulica = profesor.Korisnik.Adresa.Ulica,
+                Broj = profesor.Korisnik.Adresa.Broj,
+                Grad = profesor.Korisnik.Adresa.Grad,
+                Drzava = profesor.Korisnik.Adresa.Drzava,
+                ID = profesor.Korisnik.Adresa.ID,
+            };
 
+            kopijaProfesora.Korisnik = profesor.Korisnik;
 
-            if ((bool)!addEditProfessorWindow.ShowDialog())
+            kopijaProfesora.Korisnik.Aktivan = profesor.Korisnik.Aktivan;
+            kopijaProfesora.Korisnik.Prezime = profesor.Korisnik.Prezime;
+            kopijaProfesora.Korisnik.JMBG = profesor.Korisnik.JMBG;
+            kopijaProfesora.Korisnik.Email = profesor.Korisnik.Email;
+            kopijaProfesora.Korisnik.Pol = profesor.Korisnik.Pol;
+            kopijaProfesora.Korisnik.Lozinka = profesor.Korisnik.Lozinka;
+            kopijaProfesora.Korisnik.TipKorisnika = profesor.Korisnik.TipKorisnika;
+            kopijaProfesora.Korisnik.Ime = profesor.Korisnik.Ime;
+            kopijaProfesora.Korisnik.ID = profesor.Korisnik.ID;
+            kopijaProfesora.Korisnik.Adresa = adresa;
+
+            AddEditProfesorWindow addEditProfesorWindow = new AddEditProfesorWindow(EStatus.IZMENI, profesor);
+
+            if ((bool)!addEditProfesorWindow.ShowDialog())
             {
                 //kopiju postavljam umesto izmenjenog objekta
-                //int index = Data.Instance.Korisnici.ToList().FindIndex(ko => ko.Korisnik.Email.Equals(k.Korisnik.Email));
-                //Data.Instance.Profesori[index] = kopijaProfesora;
+                int index = Data.Instance.Profesori.ToList().FindIndex(ko => ko.Korisnik.ID.Equals(profesor.Korisnik.ID));
+                Data.Instance.Profesori[index] = kopijaProfesora;
             }
-
         }
 
         private void miObrisiProfesora_Click(object sender, RoutedEventArgs e)
         {
-            Profesor k = (Profesor)dgProfesori.SelectedItem;
+            Profesor k = (Profesor)myDataGrid.SelectedItem;
             k.Korisnik.Aktivan = false;
             Data.Instance.SacuvajEntitet("profesori.txt");
-
         }
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)

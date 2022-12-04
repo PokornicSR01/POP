@@ -12,8 +12,22 @@
             <MenuItem Name="miIzmeniStudenta" Header="Izmeni studenta" Click="miIzmeniStudenta_Click"/>
             <MenuItem Name="miObrisiStudenta" Header="Obrisi studenta" Click="miObrisiStudenta_Click"/>
         </Menu>
-        <DataGrid Name="dgStudenti" CanUserAddRows="False" HorizontalAlignment="Center" Height="174" Margin="0,74,0,0" VerticalAlignment="Top" Width="772"/>
-        <Button Name="btnNazad" Content="Nazad" Click="btnNazad_Click" Margin="346,281,354,73"/>
         
+        <!--<DataGrid Name="dgStudenti" CanUserAddRows="False" HorizontalAlignment="Center" Height="174" Margin="0,74,0,0" VerticalAlignment="Top" Width="772"/>-->
+        <DataGrid CanUserSortColumns="False" ItemsSource="{Binding}" x:Name="myDataGrid" AutoGenerateColumns="False" Margin="0,24,0,0" Background="Yellow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Korisnik.Ime }" Header="Ime" />
+                <DataGridTextColumn Width="Auto" Binding="{Binding Korisnik.Prezime}" Header="Prezime" />
+                <DataGridTextColumn Width="Auto" Binding="{Binding Korisnik.Email}" Header="Email" />
+                <DataGridTextColumn Width="Auto" Binding="{Binding Korisnik.JMBG}" Header="JMBG" />
+                <DataGridTextColumn Width="Auto" Binding="{Binding Korisnik.Adresa.Ulica}" Header="Ulica" />
+                <DataGridTextColumn Width="Auto" Binding="{Binding Korisnik.Adresa.Broj}" Header="Broj" />
+                <DataGridTextColumn Width="Auto" Binding="{Binding Korisnik.Adresa.Grad}" Header="Grad" />
+                <DataGridTextColumn Width="Auto" Binding="{Binding Korisnik.Skola.Naziv}" Header="Skola" />
+                <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Korisnik.Aktivan}" Header="Aktivan" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="btnNazad" Content="Nazad" Click="btnNazad_Click" Margin="346,281,354,73"/>
+
     </Grid>
 </Window>

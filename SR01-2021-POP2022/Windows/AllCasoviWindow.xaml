@@ -12,8 +12,15 @@
             <MenuItem Name="miIzmeniCas" Header="Izmeni cas" Click="miIzmeniCas_Click"/>
             <MenuItem Name="miObrisiCas" Header="Obrisi cas" Click="miObrisiCas_Click"/>
         </Menu>
-        <DataGrid Name="dgCasovi" CanUserAddRows="False" HorizontalAlignment="Center" Height="174" Margin="0,74,0,0" VerticalAlignment="Top" Width="772">
+        <DataGrid CanUserSortColumns="False" ItemsSource="{Binding}" x:Name="myDataGrid" AutoGenerateColumns="False" Background="Yellow" Margin="0,24,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Datum }" Header="Datum" />
+                <DataGridTextColumn Binding="{Binding TrajanjeCasa}" Header="Trajanje Casa" />
+                <DataGridCheckBoxColumn Binding="{Binding Rezervisan}" Header="Rezervisan" />
+            </DataGrid.Columns>
         </DataGrid>
+        <!--<DataGrid Name="dgCasovi" CanUserAddRows="False" HorizontalAlignment="Center" Height="174" Margin="0,74,0,0" VerticalAlignment="Top" Width="772">
+        </DataGrid>-->
         <Button Name="btnNazad" Content="Nazad" Click="btnNazad_Click" Margin="346,281,354,73"/>
     </Grid>
 </Window>

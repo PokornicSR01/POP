@@ -1,5 +1,6 @@
 ﻿using SR01_2021_POP2022.Modules;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,8 +25,9 @@ namespace SR01_2021_POP2022.Windows
         {
             InitializeComponent();
 
-            dgSkole.ItemsSource = null;
-            dgSkole.ItemsSource = Data.Instance.Skole;
+            myDataGrid.ItemsSource = null;
+            myDataGrid.ItemsSource = Data.Instance.VratiAktivneSkole();
+
         }
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
@@ -37,8 +39,34 @@ namespace SR01_2021_POP2022.Windows
 
         public void miIzmeniSkolu_Click(object sender, RoutedEventArgs e)
         {
+            Skola skola = (Skola)myDataGrid.SelectedItem;
+            Skola kopijaSkole = new Skola();
+
+            Adresa adresa = new Adresa
+            {
+                Ulica = skola.Adressa.Ulica,
+                Broj = skola.Adressa.Broj,
+                Grad = skola.Adressa.Grad,
+                Drzava = skola.Adressa.Drzava,
+                ID = skola.Adressa.ID,
+            };
+
+            kopijaSkole.Aktivan = skola.Aktivan;
+            kopijaSkole.Naziv = skola.Naziv;
+            kopijaSkole.ID = skola.ID;
+            kopijaSkole.Adressa = adresa;
+
+            AddEditSkolaWindow addEditSkolaWindow = new AddEditSkolaWindow(EStatus.IZMENI, skola);
+
+            if ((bool)!addEditSkolaWindow.ShowDialog())
+            {
+                //kopiju postavljam umesto izmenjenog objekta
+                int index = Data.Instance.Skole.ToList().FindIndex(ko => ko.ID.Equals(skola.ID));
+                Data.Instance.Skole[index] = kopijaSkole;
+            }
 
         }
+
         public void miDodajSkolu_Click(object sender, RoutedEventArgs e)
         {
             Skola s = new Skola();
@@ -50,7 +78,7 @@ namespace SR01_2021_POP2022.Windows
 
         public void miObrisiSkolu_Click(object sender, RoutedEventArgs e)
         {
-            Skola k = (Skola)dgSkole.SelectedItem;
+            Skola k = (Skola)myDataGrid.SelectedItem;
             k.Aktivan = false;
             Data.Instance.SacuvajEntitet("skole.txt");
         }

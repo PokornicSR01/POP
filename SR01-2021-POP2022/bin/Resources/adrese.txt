@@ -1,3 +1,5 @@
-aaa;aab;aaa;aaa;aaa
-adresa profesora aaa;id adrese profesora aaa;broj profesora aaa;grad profesora aaa;drzava profesora aaa
-ulica b;id adrese b;broj b;grad b;drzava b
+Ulica 123;id ulice 123;broj 123;grad 123;drzava 123
+ulica 456;id 456;broj 456;grad 456;drzava 456
+Ulica 12;12;broj 12;grad 12;drzava 12
+Ulica 127;12;broj 127;grad 127;drzava 127
+Ulica 12;12;broj 12;grad 12;drzava 12

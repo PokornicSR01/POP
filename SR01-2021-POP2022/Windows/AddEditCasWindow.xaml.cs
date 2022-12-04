@@ -30,8 +30,19 @@ namespace SR01_2021_POP2022.Windows
             selektovanCas = cas;
             selektovaniStatus = status;
 
-            cmbProfesor.ItemsSource = Data.Instance.Profesori;
-            cmbStudent.ItemsSource = Data.Instance.Studenti;
+
+            if (status.Equals(EStatus.IZMENI))
+            {
+                txtID.Text = cas.ID;
+                txtDatum.Text = cas.Datum.ToString();
+                txtTrajanjeCasa.Text = cas.TrajanjeCasa;
+                txtID.IsEnabled = false;
+            }
+
+            //cmbProfesor.ItemsSource = Data.Instance.Profesori;
+            //cmbProfesor.SelectedItem = cas.Professor;
+            //cmbStudent.ItemsSource = Data.Instance.Studenti;
+            //cmbStudent.SelectedItem = cas.Professor;
 
 
             if (status.Equals(EStatus.DODAJ))
@@ -52,37 +63,45 @@ namespace SR01_2021_POP2022.Windows
 
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
-            RegistrovaniKorisnik k = new RegistrovaniKorisnik();
-            k.ID = "3";
 
-            Profesor p = new Profesor
-            {
-                Korisnik =  k,
-            };
-
-            Student s = new Student
-            {
-                Korisnik = k,
-            };
-
-            Cas cas = new Cas
-            {
-                ID = txtID.Text,
-                Datum = Convert.ToDateTime(txtDatum.Text),
-                TrajanjeCasa = txtTrajanjeCasa.Text,
-                Student = s,
-                Professor = p,
-                Rezervisan = false,
-                Aktivan = true
-            };
 
 
             if (selektovaniStatus.Equals(EStatus.DODAJ))
             {
-                Data.Instance.Casovi.Add(cas);
-            }
+                RegistrovaniKorisnik k = new RegistrovaniKorisnik();
+                k.ID = "3";
+                k.Ime = "Nemanja";
 
-            Data.Instance.SacuvajEntitet("casovi.txt");
+                Profesor p = new Profesor
+                {
+                    Korisnik =  k,
+                };
+
+                Student s = new Student
+                {
+                    Korisnik = k,
+                };
+
+                Cas cas = new Cas
+                {
+                    ID = txtID.Text,
+                    Datum = DateTime.Parse(txtDatum.Text),
+                    TrajanjeCasa = txtTrajanjeCasa.Text,
+                    Student = s,
+                    Professor = p,
+                    Rezervisan = false,
+                    Aktivan = true
+                };
+
+                Data.Instance.Casovi.Add(cas);
+                Data.Instance.SacuvajEntitet("casovi.txt");
+            }
+            else
+            {
+                selektovanCas.Datum = DateTime.Parse(txtDatum.Text);
+                selektovanCas.TrajanjeCasa = txtTrajanjeCasa.Text;
+                Data.Instance.SacuvajEntitet("casovi.txt");
+            }
 
             this.Close();
         }

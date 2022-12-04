@@ -40,13 +40,13 @@
         <Label Grid.Row="3">Trajanje casa</Label>
         <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" Name="txtTrajanjeCasa"/>
 
-        <Label Name="lblProfesor" Content="Profesor:" Grid.Column="0" Grid.Row="7"></Label>
+        <!--<Label Name="lblProfesor" Content="Profesor:" Grid.Column="0" Grid.Row="7"></Label>
         <ComboBox Name="cmbProfesor" Grid.Column="1" Grid.Row="7" Margin="0,0,0,10">
         </ComboBox>
 
         <Label Name="lblStudent" Content="Student:" Grid.Column="0" Grid.Row="8"></Label>
         <ComboBox Name="cmbStudent" Grid.Column="1" Grid.Row="8" Margin="0,0,0,10" SelectedItem="">
-        </ComboBox>
+        </ComboBox>-->
 
         <Button Name="btnOdustani" Content="Odustani" Grid.Column="1" Grid.Row="9" Width="100" Click="btnOdustani_Click" Margin="10,0,140,0" Grid.RowSpan="5"/>
         <Button Name="btnSacuvaj" Content="Sacuvaj" Grid.Column="1" Width="100" Grid.Row="9" Click="btnSacuvaj_Click" Margin="125,0,25,0" Grid.RowSpan="5"/>

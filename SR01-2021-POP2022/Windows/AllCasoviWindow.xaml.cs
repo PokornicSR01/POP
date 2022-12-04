@@ -23,9 +23,10 @@ namespace SR01_2021_POP2022.Windows
         public AllCasoviWindow()
         {
             InitializeComponent();
+            
+            myDataGrid.ItemsSource = null;
+            myDataGrid.ItemsSource = Data.Instance.VratiAktivneCasove();
 
-            dgCasovi.ItemsSource = null;
-            dgCasovi.ItemsSource = Data.Instance.Casovi;
         }
 
         private void miDodajCas_Click(object sender, RoutedEventArgs e)
@@ -39,12 +40,31 @@ namespace SR01_2021_POP2022.Windows
 
         private void miIzmeniCas_Click(object sender, RoutedEventArgs e)
         {
+            Cas cas = (Cas)myDataGrid.SelectedItem;
+            Cas kopijaCasa = new Cas();
+
+            kopijaCasa.TrajanjeCasa = cas._trajanjeCasa;
+            kopijaCasa.Aktivan = cas.Aktivan;
+            kopijaCasa.Datum = cas.Datum;
+            kopijaCasa.Rezervisan = cas.Rezervisan;
+            kopijaCasa.ID = cas.ID;
+            kopijaCasa.Professor = cas.Professor;
+            kopijaCasa.Student = cas.Student;
+
+            AddEditCasWindow aecw = new AddEditCasWindow(EStatus.IZMENI, cas);
+
+            if ((bool)!aecw.ShowDialog())
+            {
+                //kopiju postavljam umesto izmenjenog objekta
+                int index = Data.Instance.Casovi.ToList().FindIndex(ko => ko.ID.Equals(cas.ID));
+                Data.Instance.Casovi[index] = kopijaCasa;
+            }
 
         }
 
         private void miObrisiCas_Click(object sender, RoutedEventArgs e)
         {
-            Cas cas = (Cas)dgCasovi.SelectedItem;
+            Cas cas = (Cas)myDataGrid.SelectedItem;
             cas.Aktivan = false;
             Data.Instance.SacuvajEntitet("casovi.txt");
         }

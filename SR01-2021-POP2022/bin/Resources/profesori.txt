@@ -1,1 +1,1 @@
-profesor a;prezime a;a@gmail.com;a;jmbg a;MUSKI;PROFESOR;id profesora a;False;id adrese b;;
+Ana;Markovic;ana@gmail.com;ana123;123123123123;ZENSKI;PROFESOR;123;True;id ulice 123;;

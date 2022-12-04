@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using SR01_2021_POP2022.Services;
+using System.Security.Cryptography.Xml;
 
 namespace SR01_2021_POP2022.Modules
 {
@@ -135,32 +136,6 @@ namespace SR01_2021_POP2022.Modules
 
             };
 
-            //Cas cas1 = new Cas
-            //{
-            //    ID = "cas broj 1",
-            //};
-            //Cas cas2 = new Cas
-            //{
-            //    ID = "cas broj 2",
-            //};
-            //Cas cas3 = new Cas
-            //{
-            //    ID = "cas broj 3",
-            //};
-            //Casovi.Add(cas1);
-            //Casovi.Add(cas2);
-            //Casovi.Add(cas3);
-
-
-
-            //korisnik4.Jezici = korisnik4.Jezici.Add("66");
-            //korisnik4.Casovi = "2";
-
-            //Korisnici.Add(korisnik);
-            //Korisnici.Add(korisnik2);
-            Profesori.Add(korisnik4);
-            Profesori.Add(korisnik5);
-
         }
 
         public void SacuvajEntitet(string filename)
@@ -280,9 +255,84 @@ namespace SR01_2021_POP2022.Modules
             return s;
         }
 
+        public ObservableCollection<Profesor> VratiAktivneProfesori()
+        {
+            ObservableCollection<Profesor> aktivniProfesori = new ObservableCollection<Profesor>();
+
+            foreach(Profesor profesor in Profesori)
+            {
+                if (profesor.Korisnik.Aktivan)
+                {
+                    aktivniProfesori.Add(profesor);
+                }
+            }
+
+            return aktivniProfesori;
+        }
+
+        public ObservableCollection<Skola> VratiAktivneSkole()
+        {
+            ObservableCollection<Skola> aktivneSkole = new ObservableCollection<Skola>();
+
+            foreach (Skola skola in Skole)
+            {
+                if (skola.Aktivan)
+                {
+                    aktivneSkole.Add(skola);
+                }
+            }
+
+            return aktivneSkole;
+        }
+
+        public ObservableCollection<Student> VratiAktivneStudente()
+        {
+            ObservableCollection<Student> aktivniStudenti = new ObservableCollection<Student>();
+
+            foreach (Student student in Studenti)
+            {
+                if (student.Korisnik.Aktivan)
+                {
+                    aktivniStudenti.Add(student);
+                }
+            }
+
+            return aktivniStudenti;
+        }
+
+        public ObservableCollection<Cas> VratiAktivneCasove()
+        {
+            ObservableCollection<Cas> aktivniCasovi = new ObservableCollection<Cas>();
+
+            foreach (Cas cas in Casovi)
+            {
+                if (cas.Aktivan)
+                {
+                    aktivniCasovi.Add(cas);
+                }
+            }
+
+            return aktivniCasovi;
+        }
+
         public void ObrisiProfesora(string ID)
         {
             profesorService.DeleteUser(ID);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string? ToString()
+        {
+            return base.ToString();
         }
     }
 }

@@ -90,10 +90,8 @@ namespace SR01_2021_POP2022.Modules
 
         public string ProfesorZaUpisUFajl()
         {
-
                 return _korisnik.Ime + ";" + _korisnik.Prezime + ";" + _korisnik.Email + ";" + _korisnik.Lozinka + ";" + _korisnik.JMBG + ";"
                 + _korisnik.Pol + ";" + _korisnik.TipKorisnika + ";" + _korisnik.ID + ";" + _korisnik.Aktivan + ";" + _korisnik.Adresa.ID + ";" + "" + ";" + "";
-
         }
 
     }

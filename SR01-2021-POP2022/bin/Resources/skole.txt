@@ -1,1 +1,1 @@
-aaa;aab;;aaa;False
+Skola 1;12;;1;True

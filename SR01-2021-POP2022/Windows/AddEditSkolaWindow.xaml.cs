@@ -30,6 +30,14 @@ namespace SR01_2021_POP2022.Windows
             selektovanaSkola = skola;
             selektovaniStatus = status;
 
+            if (status.Equals(EStatus.IZMENI))
+            {
+                txtUlicaAdrese.Text = skola.Adressa.Ulica;
+                txtIDAdrese.Text = skola.Adressa.ID;
+                txtGradAdrese.Text = skola.Adressa.Grad;
+                txtDrzavaAdrese.Text = skola.Adressa.Drzava;
+                txtBrojAdrese.Text = skola.Adressa.Broj;
+            }
 
             this.DataContext = skola;  //setujem binding source
 
@@ -59,7 +67,7 @@ namespace SR01_2021_POP2022.Windows
                 Broj = txtBrojAdrese.Text,
                 ID = txtIDAdrese.Text,
                 Grad = txtGradAdrese.Text,
-                Drzava = txtDrzavaAdrese.Text
+                Drzava = txtDrzavaAdrese.Text,
             };
 
             Data.Instance.Adrese.Add(adresa);
@@ -68,13 +76,15 @@ namespace SR01_2021_POP2022.Windows
             {
                 Naziv = selektovanaSkola.Naziv,
                 ID = selektovanaSkola.ID,
-                Adressa = adresa
+                Adressa = adresa,
+                Aktivan = true
             };
 
             if (selektovaniStatus.Equals(EStatus.DODAJ))
             {
                 Data.Instance.Skole.Add(skola);
             }
+
             Data.Instance.SacuvajEntitet("adrese.txt");
             Data.Instance.SacuvajEntitet("skole.txt");
             this.Close();
