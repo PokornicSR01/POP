@@ -1,0 +1,5 @@
+Skola 144;12;;1;True
+n;k;;o;True
+k;k;;k;True
+l‚l;l;;ll;True
+n;n;;n;True

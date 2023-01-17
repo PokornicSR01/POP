@@ -1,0 +1,30 @@
+﻿<Window x:Class="SR01_2021_POP2022.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SR01_2021_POP2022"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="530" Width="700"
+        Background="Yellow">
+    <Grid>
+        <Menu Margin="0,0,0,338">
+            <MenuItem Name="miSkole" Header="Skole" Click="miSkole_Click" Width="70"/>
+            <MenuItem Name="miProfesoriUSkoli" Header="Profesori Skole" Click="miProfesoriUSkoli_Click" Width="auto"/>
+        </Menu>
+        <DataGrid CanUserAddRows="False" 
+                  IsReadOnly="True" 
+                  Name="myDataGrid" 
+                  Margin="0,51,0,24" Background="Yellow"/>
+        <Label Margin="0,318,573,31">Pretraga po nazivu</Label>
+        <Button Name="btnPretraziPoNazivu" Click="btnPretraziPoNazivu_Click" Margin="303,318,302,145">Pretrazi</Button>
+        <TextBox Name="txtPretragaPoNazivu" Margin="132,318,412,144" KeyUp="txtPretragaPoNazivu_KeyUp" RenderTransformOrigin="0.494,0.204"></TextBox>
+        
+        <Label Margin="0,383,573,-34">Pretraga po jezicima</Label>
+        <Button Name="btnPretraziPoJezicima" Click="btnPretraziPoJezicima_Click" Margin="302,377,302,87">Pretrazi</Button>
+        <TextBox Name="txtPretragaPoJezicima" Margin="132,376,412,88" KeyUp="txtPretragaPoJezicima_KeyUp"></TextBox>
+        
+        <Button Name="btnLogin" Click="btnLogin_Click" Margin="590,376,10,88">Login</Button>
+        <Button Name="btnRegister" Click="btnRegister_Click" Margin="466,377,134,87" RenderTransformOrigin="0.49,-0.359">Register</Button>
+    </Grid>
+</Window>

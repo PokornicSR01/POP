@@ -1,0 +1,76 @@
+﻿<Window x:Class="SR01_2021_POP2022.Windows.AddEditStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SR01_2021_POP2022.Windows"
+        mc:Ignorable="d"
+        Title="AddEditStudentWindow" Height="450" Width="700" Background="Yellow">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="0">Podaci o korisniku:</Label>
+
+        <Label Grid.Column="0" Grid.Row="1">Ime:</Label>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,0,0,10" Name="txtIme" Text="{Binding Path = Korisnik.Ime, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Row="2">Prezime:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Name="txtPrezime" Text="{Binding Path = Korisnik.Prezime, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Row="3">E-mail:</Label>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" Name="txtEmail" Text="{Binding Path = Korisnik.Email, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Row="4">Lozinka</Label>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,0,10" Name="txtLozinka" Text="{Binding Path = Korisnik.Lozinka, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Row="5">JMBG:</Label>
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,0,10" Name="txtJMBG" Text="{Binding Path = Korisnik.JMBG, ValidatesOnDataErrors=True}"/>
+
+        <!--<Label Name="lblCas" Content="Skola:" Grid.Column="0" Grid.Row="7"></Label>
+        <ComboBox Name="cmbCas" Grid.Column="1" Grid.Row="7" Margin="0,0,0,10">
+        </ComboBox>-->
+
+        <Label Name="lblTip" Content="Pol:" Grid.Column="0" Grid.Row="8"></Label>
+        <ComboBox Name="cmbPol" Grid.Column="1" Grid.Row="8" Margin="0,0,0,10" Text="{Binding Path = Korisnik.Pol, ValidatesOnDataErrors=True}" >
+        </ComboBox>
+
+        <Label Grid.Row="0"  Grid.Column="3" >Podaci o adresi:</Label>
+
+        <Label Grid.Row="1"  Grid.Column="2">Ulica:</Label>
+        <TextBox Name="txtUlicaAdrese" Grid.Row="1" Grid.Column="3" Margin="0,0,0,10" Text="{Binding Path = Korisnik.Adresa.Ulica, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Row="2" Grid.Column="2">Broj:</Label>
+        <TextBox Name="txtBrojAdrese" Grid.Row="2" Grid.Column="3" Margin="0,0,0,10" Text="{Binding Path = Korisnik.Adresa.Broj, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Row="3" Grid.Column="2">Grad:</Label>
+        <TextBox Name="txtGradAdrese" Grid.Row="3" Grid.Column="3" Margin="0,0,0,10" Text="{Binding Path = Korisnik.Adresa.Grad, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Row="4" Grid.Column="2">Drzava:</Label>
+        <TextBox Name="txtDrzavaAdrese" Grid.Row="4" Grid.Column="3" Margin="0,0,0,10" Text="{Binding Path = Korisnik.Adresa.Drzava, ValidatesOnDataErrors=True}"/>
+
+        <Button Name="btnOdustani" Content="Odustani" Grid.Column="1" Grid.Row="9" Width="100" Click="btnOdustani_Click"/>
+        <Button Name="btnSacuvaj" Content="Sacuvaj" Grid.Column="3" Width="100" Grid.Row="9" Click="btnSacuvaj_Click"/>
+
+    </Grid>
+</Window>
