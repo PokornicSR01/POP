@@ -100,7 +100,7 @@ namespace LanguageSchools.Repositories
         {
             using (SqlConnection conn = new SqlConnection(Data.CONNECTION_STRING))
             {
-                string commandText = $"select * from dbo.Profesori p, dbo.RegistrovaniKorisnici u  where u.Id = {id} and p.KorisnikId = u.Id";
+                string commandText = $"select * from dbo.Profesori p, dbo.RegistrovaniKorisnici u, Adrese a where u.Id = {id} and p.KorisnikId = u.Id and a.Id = u.AdresaId";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(commandText, conn);
 
                 DataSet ds = new DataSet();
@@ -110,6 +110,15 @@ namespace LanguageSchools.Repositories
                 if (ds.Tables["Profesori"].Rows.Count > 0)
                 {
                     var row = ds.Tables["Profesori"].Rows[0];
+
+                    Adresa address = new Adresa
+                    {
+                        ID = (int)row["AdresaId"],
+                        Ulica = row["Ulica"] as string,
+                        Broj = row["Broj"] as string,
+                        Grad = row["Grad"] as string,
+                        Drzava = row["Drzava"] as string,
+                    };
 
                     var user = new RegistrovaniKorisnik
                     {
@@ -121,13 +130,15 @@ namespace LanguageSchools.Repositories
                         JMBG = row["Jmbg"] as string,
                         Pol = (Pol)Enum.Parse(typeof(Pol), row["Pol"] as string),
                         TipKorisnika = (TipKorisnika)Enum.Parse(typeof(TipKorisnika), row["TipKorisnika"] as string),
-                        Aktivan = (bool)row["Aktivan"]
+                        Aktivan = (bool)row["Aktivan"],
+                        Adresa = address
                     };
 
                     var profesor = new Profesor
                     {
                         Korisnik = user,
                         Id = (int)row["Id"],
+                        Jezik = row["jezik"] as string
                     };
 
                     return profesor;

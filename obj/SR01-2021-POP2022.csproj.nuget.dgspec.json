@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NEMANJA\\Desktop\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj": {}
+    "C:\\Users\\NEMANJA\\Desktop\\Druga godina\\Prvi semestar\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NEMANJA\\Desktop\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj": {
+    "C:\\Users\\NEMANJA\\Desktop\\Druga godina\\Prvi semestar\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NEMANJA\\Desktop\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj",
+        "projectUniqueName": "C:\\Users\\NEMANJA\\Desktop\\Druga godina\\Prvi semestar\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj",
         "projectName": "SR01-2021-POP2022",
-        "projectPath": "C:\\Users\\NEMANJA\\Desktop\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj",
+        "projectPath": "C:\\Users\\NEMANJA\\Desktop\\Druga godina\\Prvi semestar\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj",
         "packagesPath": "C:\\Users\\NEMANJA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NEMANJA\\Desktop\\POP\\kopijaProjekta\\SR01-2021-POP2022\\obj\\",
+        "outputPath": "C:\\Users\\NEMANJA\\Desktop\\Druga godina\\Prvi semestar\\POP\\kopijaProjekta\\SR01-2021-POP2022\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NEMANJA\\AppData\\Roaming\\NuGet\\NuGet.Config",

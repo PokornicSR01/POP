@@ -60,24 +60,6 @@ namespace SR01_2021_POP2022
             }
         }
 
-        private void btnPretraziPoNazivu_Click(object sender, RoutedEventArgs e)
-        {
-            string naziv = txtPretragaPoNazivu.Text.Trim();
-            if(naziv != null)
-            {
-                myDataGrid.ItemsSource = skolaService.VratiSkolePoNazivu(naziv);
-            }
-        }
-
-        private void btnPretraziPoJezicima_Click(object sender, RoutedEventArgs e)
-        {
-            string jezik = txtPretragaPoJezicima.Text.Trim();
-            if (jezik != null)
-            {
-                myDataGrid.ItemsSource = skolaService.VratiSkolePoJeziku(jezik);
-            }
-        }
-
         private void txtPretragaPoJezicima_KeyUp(object sender, KeyEventArgs e)
         {
             PretraziPoJezicima();

@@ -8,10 +8,11 @@
         Title="ProfesorMenuWindow" Height="450" Width="800" Background="Yellow">
     <Grid>
         <Menu Margin="0,0,0,378">
-            <MenuItem Name="miStudenti" Header="Studenti" Click="miStudenti_Click" Width="70"/>
-            <MenuItem Name="miCasovi" Header="Casovi" Click="miCasovi_Click" Width="70"/>
-            <MenuItem Name="miNapraviCas" Header="Napravi Cas" Click="miNapraviCas_Click" Width="70"/>
-            <MenuItem Name="miObirisiCas" Header="Obrisi Cas" Click="miObirisiCas_Click" Width="70"/>
+            <MenuItem Name="miStudenti" Header="Studenti" Click="miStudenti_Click" Width="auto"/>
+            <MenuItem Name="miCasovi" Header="Casovi" Click="miCasovi_Click" Width="auto"/>
+            <MenuItem Name="miNapraviCas" Header="Napravi Cas" Click="miNapraviCas_Click" Width="auto"/>
+            <MenuItem Name="miObirisiCas" Header="Obrisi Cas" Click="miObirisiCas_Click" Width="auto"/>
+            <MenuItem Name="miProfil" Header="Profil" Click="miProfil_Click" Width="auto"/>
         </Menu>
         <DataGrid CanUserAddRows="False" 
                   IsReadOnly="True" 

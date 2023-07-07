@@ -17,11 +17,9 @@
                   Name="myDataGrid" 
                   Margin="0,51,0,24" Background="Yellow"/>
         <Label Margin="0,318,573,31">Pretraga po nazivu</Label>
-        <Button Name="btnPretraziPoNazivu" Click="btnPretraziPoNazivu_Click" Margin="303,318,302,145">Pretrazi</Button>
         <TextBox Name="txtPretragaPoNazivu" Margin="132,318,412,144" KeyUp="txtPretragaPoNazivu_KeyUp" RenderTransformOrigin="0.494,0.204"></TextBox>
         
         <Label Margin="0,383,573,-34">Pretraga po jezicima</Label>
-        <Button Name="btnPretraziPoJezicima" Click="btnPretraziPoJezicima_Click" Margin="302,377,302,87">Pretrazi</Button>
         <TextBox Name="txtPretragaPoJezicima" Margin="132,376,412,88" KeyUp="txtPretragaPoJezicima_KeyUp"></TextBox>
         
         <Button Name="btnLogin" Click="btnLogin_Click" Margin="590,376,10,88">Login</Button>

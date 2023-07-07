@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wpdho0PlknUkHPHZDqnzesD40pZgDk3NfA019u5CThNbjlJ4wH+g74QhAzA2A5GDnI43nCH4c+pzwwiqwW4trA==",
+  "dgSpecHash": "HfX7GMNZceN8yRUN5pGC1RP3CysZKB2hEyVhM5rHSxthr/WKMiYM+2scfhvF36MYzVObEUrJPJvIEE2Z+D/p2Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\NEMANJA\\Desktop\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj",
+  "projectFilePath": "C:\\Users\\NEMANJA\\Desktop\\Druga godina\\Prvi semestar\\POP\\kopijaProjekta\\SR01-2021-POP2022\\SR01-2021-POP2022.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NEMANJA\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\NEMANJA\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

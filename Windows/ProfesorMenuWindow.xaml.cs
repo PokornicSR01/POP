@@ -70,5 +70,19 @@ namespace SR01_2021_POP2022.Windows
             mW.Show();
             this.Close();
         }
+
+        private void miProfil_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditProfesorWindow window = new AddEditProfesorWindow(profesor);
+
+            var successeful = window.ShowDialog();
+
+            if ((bool)successeful)
+            {
+                ProfesorMenuWindow smw = new ProfesorMenuWindow(this.profesor.Korisnik);
+                smw.Show();
+                this.Close();
+            }
+        }
     }
 }
